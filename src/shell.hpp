@@ -36,16 +36,16 @@ Available commands:
                 putc('\n');
             }
         else if (cmdeq(cmd, arg0, "greet", 5))
-        for (u32 i = 1; i < argc; ++i) {
-            auto r = argl[i];
-
-            puts ("Hello, ");
-            
-            for (u32 j = r.start; j < r.end; ++j)
-                putc(cmd[j]);
-            
-            puts("!\n");
-        }
+            for (u32 i = 1; i < argc; ++i) {
+                auto r = argl[i];
+    
+                puts ("Hello, ");
+                
+                for (u32 j = r.start; j < r.end; ++j)
+                    putc(cmd[j]);
+                
+                puts("!\n");
+            }
         else if (cmdeq(cmd, arg0, "exit", 4)) return false;
         else puts("Unknown command\n");
     }
