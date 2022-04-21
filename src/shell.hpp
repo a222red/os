@@ -13,9 +13,10 @@ inline bool cmdeq(
 bool exec_cmd(const char* cmd, const List<Range>& argl) {
     u32 argc = argl.len();
     auto arg0 = argl[0];
-    
+
     if (argc > 0) {
-        if (cmdeq(cmd, arg0, "echo", 4))
+        if (cmdeq(cmd, arg0, "clear", 5)) clear();
+        else if (cmdeq(cmd, arg0, "echo", 4))
             for (u32 i = 1; i < argc; ++i) {
                 auto r = argl[i];
                 
@@ -36,7 +37,6 @@ bool exec_cmd(const char* cmd, const List<Range>& argl) {
             puts("!\n");
         }
         else if (cmdeq(cmd, arg0, "exit", 4)) return false;
-        else if (cmdeq(cmd, arg0, "clear", 5)) clear();
         else puts("Unknown command\n");
     }
 
