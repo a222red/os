@@ -16,6 +16,16 @@ bool exec_cmd(const char* cmd, const List<Range>& argl) {
 
     if (argc > 0) {
         if (cmdeq(cmd, arg0, "clear", 5)) clear();
+        else if (cmdef(cmd, arg0, "help", 4)) puts(
+R"(
+Available commands:
+    clear: Clear the console
+    help: Show this message
+    echo [MSGS]: Print [MSGS] to the console
+    greet [PPL]: Say hello to [PPL]
+    exit: Exit the shell
+)"
+        );
         else if (cmdeq(cmd, arg0, "echo", 4))
             for (u32 i = 1; i < argc; ++i) {
                 auto r = argl[i];
