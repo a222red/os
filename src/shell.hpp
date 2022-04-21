@@ -4,8 +4,10 @@
 #include "tokenizer.hpp"
 #include "str.hpp"
 
-inline bool cmdeq(const char* cmd, Range r, const char* str, u32 len) {
-    return (r.end - r.start == len && streq(cmd + r.start, str, len));
+inline bool cmdeq(
+    const char* cmd, Range r, const char* str, u32 len
+) {
+    return r.end - r.start == len && streq(cmd + r.start, str, len);
 }
 
 bool exec_cmd(const char* cmd, const List<Range>& argl) {
@@ -13,14 +15,15 @@ bool exec_cmd(const char* cmd, const List<Range>& argl) {
     auto arg0 = argl[0];
     
     if (argc > 0) {
-        if (cmdeq(cmd, arg0, "echo", 4)) for (u32 i = 1; i < argc; ++i) {
-            auto r = argl[i];
-            
-            for (u32 j = r.start; j < r.end; ++j)
-                putc(cmd[j]);
-            
-            putc('\n');
-        }
+        if (cmdeq(cmd, arg0, "echo", 4))
+            for (u32 i = 1; i < argc; ++i) {
+                auto r = argl[i];
+                
+                for (u32 j = r.start; j < r.end; ++j)
+                    putc(cmd[j]);
+                
+                putc('\n');
+            }
         else if (cmdeq(cmd, arg0, "greet", 5))
         for (u32 i = 1; i < argc; ++i) {
             auto r = argl[i];
