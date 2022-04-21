@@ -9,5 +9,5 @@
 #include "shell.hpp"
 
 extern "C" void kernel_main(u16 kernel_sectors) {
-    shell_init();
+    start_shell();
 }

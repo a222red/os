@@ -53,7 +53,7 @@ Available commands:
     return true;
 }
 
-void shell_init() {
+void start_shell() {
     char cmd[256];
     
     while (1) {
