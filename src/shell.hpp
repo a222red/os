@@ -8,41 +8,46 @@ inline bool cmdeq(const char* cmd, Range r, const char* str, u32 len) {
     return (r.end - r.start == len && streq(cmd + r.start, str, len));
 }
 
+bool exec_cmd(const char* cmd, const List<Range>& argl) {
+    u32 argc = argl.len();
+    auto arg0 = argl[0];
+    
+    if (argc > 0) {
+        if (cmdeq(cmd, arg0, "echo", 4)) for (u32 i = 1; i < argc; ++i) {
+            auto r = argl[i];
+            
+            for (u32 j = r.start; j < r.end; ++j)
+                putc(cmd[j]);
+            
+            putc('\n');
+        }
+        else if (cmdeq(cmd, arg0, "greet", 5))
+        for (u32 i = 1; i < argc; ++i) {
+            auto r = argl[i];
+
+            puts ("Hello, ");
+            
+            for (u32 j = r.start; j < r.end; ++j)
+                putc(cmd[j]);
+            
+            puts("!\n");
+        }
+        else if (cmdeq(cmd, arg0, "exit", 4)) return false;
+        else if (cmdeq(cmd, arg0, "clear", 5)) clear();
+        else puts("Unknown command\n");
+    }
+
+    return true;
+}
+
 void shell_init() {
     char cmd[256];
     
     while (1) {
         putc('>', 0x0a);
         gets(cmd, 255);
-        
-        auto argl = tokenize(cmd);
-        u32 argc = argl.len();
-        auto arg0 = argl[0];
 
-        if (argc > 0) {
-            if (cmdeq(cmd, arg0, "echo", 4)) for (u32 i = 1; i < argc; ++i) {
-                auto r = argl[i];
-                
-                for (u32 j = r.start; j < r.end; ++j)
-                    putc(cmd[j]);
-                
-                putc('\n');
-            }
-            else if (cmdeq(cmd, arg0, "greet", 5))
-            for (u32 i = 1; i < argc; ++i) {
-                auto r = argl[i];
-
-                puts ("Hello, ");
-                
-                for (u32 j = r.start; j < r.end; ++j)
-                    putc(cmd[j]);
-                
-                puts("!\n");
-            }
-            else if (cmdeq(cmd, arg0, "exit", 4)) break;
-            else if (cmdeq(cmd, arg0, "clear", 5)) clear();
-            else puts("Unknown command\n");
-        }
+        if (!exec_cmd(cmd, tokenize(cmd))) break;
     }
 }
 
