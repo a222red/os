@@ -165,5 +165,5 @@ _clear_loop:
 _clear_end:
     push dword 0
     call set_cursor
-    add eax, 4
+    add esp, 4
     ret
