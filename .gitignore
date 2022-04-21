@@ -5,3 +5,5 @@
 /os-image.bin
 /system.bin
 /.vscode
+.replit
+replit.nix
