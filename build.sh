@@ -45,6 +45,4 @@ cd ..
 # Combine the os image and filesystem for a complete 'installation'
 cat os-image.bin fs/fs.bin > system.bin || exit $?
 
-cp os-image.bin /mnt/c/Users/andre
-
 echo "Done!"
