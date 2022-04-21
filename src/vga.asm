@@ -154,14 +154,6 @@ scroll:
 
 global clear
 clear:
-    ;push dword 4000
-    ;push dword 0
-    ;push dword VID_MEM
-    ;call memset
-    ;add esp, 4
-    ;call set_cursor
-    ;add esp, 8
-    ;ret
     xor eax, eax
 _clear_loop:
     cmp eax, 4000
