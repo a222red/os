@@ -17,8 +17,7 @@ bool exec_cmd(const char* cmd, const List<Range>& argl) {
     if (argc > 0) {
         if (cmdeq(cmd, arg0, "clear", 5)) clear();
         else if (cmdeq(cmd, arg0, "help", 4)) puts(
-R"(
-Available commands:
+R"(Available commands:
     clear: Clear the console
     help: Show this message
     echo [MSGS]: Print [MSGS] to the console
