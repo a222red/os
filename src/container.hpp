@@ -79,21 +79,21 @@ class List {
                 start = ptr;
             }
         }
-        T& operator[](I i) {
+        T& operator[](I i) const {
             ListNode<T>* ptr;
 
             for (ptr = start; i > 0; --i) ptr = ptr->next;
 
             return ptr->value;
         }
-        T& index_back(I i) {
+        T& index_back(I i) const {
             ListNode<T>* ptr;
 
             for (ptr = end; i > 0; --i) ptr = ptr->prev;
 
             return ptr->value;
         }
-        I len() {
+        I len() const {
             I i = 1;
 
             if (start == nullptr) { return 0; }
