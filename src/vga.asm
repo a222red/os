@@ -158,7 +158,7 @@ clear:
 _clear_loop:
     cmp eax, 4000
     je _clear_end
-    mov byte [VID_MEM + eax], ' ',
+    mov byte [VID_MEM + eax], ' '
     mov byte [(VID_MEM + 1) + eax], 7
     add eax, 2
     jmp _clear_loop
