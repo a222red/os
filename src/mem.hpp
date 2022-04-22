@@ -51,6 +51,7 @@ void* mem_alloc(u32 n) {
             else {
                 auto next = node->next;
                 auto size = node->size;
+                
                 node->next = (MemNode*)(
                     (u8*)node + sizeof(MemNode) + n
                 );
