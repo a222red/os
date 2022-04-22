@@ -38,7 +38,7 @@ R"(Available commands:
             for (u32 i = 1; i < argc; ++i) {
                 auto r = argl[i];
     
-                puts ("Hello, ");
+                puts("Hello, ");
                 
                 for (u32 j = r.start; j < r.end; ++j)
                     putc(cmd[j]);
