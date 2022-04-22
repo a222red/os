@@ -2,6 +2,7 @@
 #define ISR_HPP
 
 #include "idt.hpp"
+#include "vga.hpp"
 
 extern "C" void isr0();
 extern "C" void isr1();
