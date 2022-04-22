@@ -12,7 +12,7 @@ List<Range> tokenize(const char* s) {
         char c = s[r.end];
         
         if (c == 0x00) {
-            if (r.end > 0 && s[r.end - 1] != ' ' && r.end > r.start)
+            if (s[r.end - 1] != ' ' && r.end > r.start)
                 l.push_back(r);
             break;
         }
@@ -23,7 +23,7 @@ List<Range> tokenize(const char* s) {
             r.start = r.end + 1;
         }
         else if (c == ' ' && !in_str) {
-            if (r.end > 0 && s[r.end - 1] != ' ' && r.end > r.start)
+            if (s[r.end - 1] != ' ' && r.end > r.start)
                 l.push_back(r);
             r.start = r.end + 1;
         }
