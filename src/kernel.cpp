@@ -1,8 +1,3 @@
-#include "types.hpp"
-#include "mem.hpp"
-#include "str.hpp"
-#include "vga.hpp"
-#include "keyboard.hpp"
 #include "timer.hpp"
 #include "syscall.hpp"
 #include "disk.hpp"

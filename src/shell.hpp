@@ -1,6 +1,9 @@
 #ifndef SHELL_HPP
 #define SHELL_HPP
 
+#include "types.hpp"
+#include "keyboard.hpp"
+#include "vga.hpp"
 #include "tokenizer.hpp"
 #include "str.hpp"
 
