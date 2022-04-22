@@ -6,9 +6,7 @@
 
 inline bool cmdeq(
     const char* cmd, Range r, const char* str, u32 len
-) {
-    return r.end - r.start == len && streq(cmd + r.start, str, len);
-}
+) { return r.end - r.start == len && streq(cmd + r.start, str, len); }
 
 bool exec_cmd(const char* cmd, const List<Range>& argl) {
     u32 argc = argl.len();
