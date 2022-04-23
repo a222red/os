@@ -68,7 +68,7 @@ void char_back() {
     set_cursor(c - 1);
 };
 
-void print_num(i32 i) {
+extern "C" void print_num(i32 i) {
     char a[11] { 0 };
     itos(a, i);
     puts(a);
