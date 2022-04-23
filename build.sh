@@ -45,4 +45,10 @@ cd ..
 # Combine the os image and filesystem for a complete 'installation'
 cat os-image.bin fs/fs.bin > system.bin || exit $?
 
-echo "Done!"
+if [[ -z "${__OS_BUILD_FINI_CMD+x}" ]]; then
+    echo "Done!"
+else
+    echo "Running extra build command..."
+    $__OS_BUILD_FINI_CMD
+    echo "Done!"
+fi
