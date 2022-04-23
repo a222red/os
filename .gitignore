@@ -2,8 +2,8 @@
 /build
 /fs/fsgen
 /fs/fs.bin
-/os-image.bin
-/system.bin
+os-image.bin
+system.bin
 /.vscode
 /.ccls-cache
 .replit
