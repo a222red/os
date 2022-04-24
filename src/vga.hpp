@@ -63,8 +63,8 @@ void disable_cursor() {
 
 void char_back() {
     u32 c = get_cursor();
-    VID_MEM[c * 2 - 2] = 0x00;
-    VID_MEM[c * 2 - 1] = 0x00;
+    VID_MEM[c * 2 - 2] = ' ';
+    VID_MEM[c * 2 - 1] = 0x07;
     set_cursor(c - 1);
 };
 
