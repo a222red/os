@@ -15,10 +15,11 @@ class List {
     protected:
         ListNode<T>* start;
         ListNode<T>* end;
+        I length;
     public:
-        List() : start(nullptr), end(nullptr) {}
+        List() : start(nullptr), end(nullptr), length(0) {}
         List(T* arr, I len) {
-            for (I i = 0; i < len; ++i) this->push_back(T[i]);
+            for (I i = 0; i < len; ++i) this->push_back(arr[i]);
         }
         void push_back(const T& t) {
             if (start == nullptr) {
@@ -37,6 +38,7 @@ class List {
                 };
                 end = end->next;
             }
+            ++this->length;
         }
         void push_front(const T& t) {
             if (start == nullptr) {
@@ -55,6 +57,7 @@ class List {
                 };
                 start = start->prev;
             }
+            ++this->length;
         }
         void pop_back() {
             if (end->prev == nullptr) {
@@ -68,6 +71,7 @@ class List {
                 delete end;
                 end = ptr;
             }
+            --this->length;
         }
         void pop_front() {
             if (end->prev == nullptr) {
@@ -81,6 +85,7 @@ class List {
                 delete start;
                 start = ptr;
             }
+            --this->length;
         }
         T& operator[](I i) const {
             ListNode<T>* ptr;
@@ -96,16 +101,7 @@ class List {
 
             return ptr->value;
         }
-        I len() const {
-            I i = 1;
-
-            if (start == nullptr) { return 0; }
-
-            for (auto ptr = start; ptr != end; ++i)
-                ptr = ptr->next;
-
-            return i;
-        }
+        I len() const { return this->length; }
 };
 
 struct Range {
