@@ -18,7 +18,7 @@ class List {
         I length;
     public:
         List() : start(nullptr), end(nullptr), length(0) {}
-        List(const List<T, I>& list) { *this = list.clone() }
+        List(const List<T, I>& list) { *this = list.clone(); }
         List(T* arr, I len) {
             for (I i = 0; i < len; ++i) this->push_back(arr[i]);
         }
@@ -26,88 +26,88 @@ class List {
             List<T, I> list;
             ListNode<T>* ptr;
 
-            for (ptr = start; ptr != nullptr; ptr = ptr->next)
+            for (ptr = this->start; ptr != nullptr; ptr = ptr->next)
                 list.push_back(ptr->value);
             
             return list;
         }
         void push_back(const T& t) {
-            if (start == nullptr) {
-                start = new ListNode<T> {
+            if (this->start == nullptr) {
+                this->start = new ListNode<T> {
                     .value = t,
                     .next = nullptr,
                     .prev = nullptr
                 };
-                end = start;
+                this->end = this->start;
             }
             else {
-                end->next = new ListNode<T> {
+                this->end->next = new ListNode<T> {
                     .value = t,
                     .next = nullptr,
-                    .prev = end
+                    .prev = this->end
                 };
-                end = end->next;
+                this->end = this->end->next;
             }
             ++this->length;
         }
         void push_front(const T& t) {
-            if (start == nullptr) {
-                start = new ListNode<T> {
+            if (this->start == nullptr) {
+                this->start = new ListNode<T> {
                     .value = t,
                     .next = nullptr,
                     .prev = nullptr
                 };
-                end = start;
+                this->end = this->start;
             }
             else {
-                start->prev = new ListNode<T> {
+                this->start->prev = new ListNode<T> {
                     .value = t,
-                    .next = start,
+                    .next = this->start,
                     .prev = nullptr
                 };
-                start = start->prev;
+                this->start = this->start->prev;
             }
             ++this->length;
         }
         void pop_back() {
-            if (end->prev == nullptr) {
-                delete end;
-                end = nullptr;
-                start = nullptr;
+            if (this->end->prev == nullptr) {
+                delete this->end;
+                this->end = nullptr;
+                this->start = nullptr;
             }
             else {
-                end->prev->next = nullptr;
-                auto ptr = end->prev;
-                delete end;
-                end = ptr;
+                this->end->prev->next = nullptr;
+                auto ptr = this->end->prev;
+                delete this->end;
+                this->end = ptr;
             }
             --this->length;
         }
         void pop_front() {
-            if (end->prev == nullptr) {
-                delete end;
-                end = nullptr;
-                start = nullptr;
+            if (this->end->prev == nullptr) {
+                delete this->end;
+                this->end = nullptr;
+                this->start = nullptr;
             }
             else {
-                start->next->prev = nullptr;
-                auto ptr = start->next;
-                delete start;
-                start = ptr;
+                this->start->next->prev = nullptr;
+                auto ptr = this->start->next;
+                delete this->start;
+                this->start = ptr;
             }
             --this->length;
         }
         T& operator[](I i) const {
             ListNode<T>* ptr;
 
-            for (ptr = start; i > 0; --i) ptr = ptr->next;
+            for (ptr = this->start; i > 0; --i) ptr = ptr->next;
 
             return ptr->value;
         }
         T& index_back(I i) const {
             ListNode<T>* ptr;
 
-            for (ptr = end; i > 0; --i) ptr = ptr->prev;
+            for (ptr = this->end; i > 0; --i) ptr = ptr->prev;
 
             return ptr->value;
         }
