@@ -17,6 +17,9 @@ class List {
         ListNode<T>* end;
     public:
         List() : start(nullptr), end(nullptr) {}
+        List(T* arr, I len) {
+            for (I i = 0; i < len; ++i) this->push_back(T[i]);
+        }
         void push_back(const T& t) {
             if (start == nullptr) {
                 start = new ListNode<T> {
