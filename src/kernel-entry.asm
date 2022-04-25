@@ -18,7 +18,7 @@ extern kernel_main
     call kernel_main
     cli
 _kernel_loop:
-    push 0x0f
+    push 0x0a
     push str_kernel_done
     call puts
     hlt

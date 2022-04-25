@@ -24,7 +24,8 @@ R"(Available commands:
     echo [MSGS]: Print [MSGS] to the console
     greet [PPL]: Say hello to [PPL]
     exit: Exit the shell
-)"
+)",
+            0x0a
         );
         else if (cmdeq(cmd, arg0, "echo", 4))
             for (u32 i = 1; i < argc; ++i) {
