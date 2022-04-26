@@ -54,7 +54,8 @@ R"(Available commands:
                 
                 puts("!\n");
             }
-        else if (cmdeq(cmd, arg0, "exit", 4)) return false;
+        else if (cmdeq(cmd, arg0, "exit", 4))
+            return false;
         else puts("Unknown command\n");
     }
 
