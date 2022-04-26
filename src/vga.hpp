@@ -31,8 +31,12 @@ namespace colors {
         WHITE = 0xf
     };
 
-    inline u8 text_color(u8 fg, u8 bg) {
-        return (bg << 4) | (fg & 0x0F);
+    inline u8 text_color(
+        u8 fg, u8 bg, bool fg_b = false, bool bg_b = false
+    ) {
+        return (
+            ((bg << 4) | (bg_b << 7)) | ((fg & 0x0F) | (fg_b << 3))
+        );
     }
 }
 

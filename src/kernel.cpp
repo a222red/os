@@ -4,11 +4,13 @@
 #include "shell.hpp"
 
 extern "C" void kernel_main(u16 kernel_sectors) {
+    using namespace colors;
+    
     puts(
 R"(Welcome to <insert OS name here>!
 Type `help` for a list of commands.
 )",
-        0x0a
+        text_color(GREEN, BLACK, true)
     );
     start_shell();
 }

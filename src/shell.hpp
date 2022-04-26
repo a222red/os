@@ -12,6 +12,8 @@ inline bool cmdeq(
 ) { return r.end - r.start == len && streq(cmd + r.start, str, len); }
 
 bool exec_cmd(const char* cmd, const List<Range>& argl) {
+    using namespace colors;
+    
     u32 argc = argl.len();
     auto arg0 = argl[0];
 
@@ -25,7 +27,7 @@ R"(Available commands:
     greet [PPL]: Say hello to [PPL]
     exit: Exit the shell
 )",
-            0x0a
+            text_color(GREEN, BLACK, true)
         );
         else if (cmdeq(cmd, arg0, "echo", 4))
             for (u32 i = 1; i < argc; ++i) {
@@ -55,10 +57,12 @@ R"(Available commands:
 }
 
 void start_shell() {
+    using namespace colors;
+    
     char cmd[256];
     
     while (1) {
-        putc('>', 0x0a);
+        putc('>', text_color(GREEN, BLACK, true));
         gets(cmd, 255);
 
         if (!exec_cmd(cmd, tokenize(cmd))) break;
