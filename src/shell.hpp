@@ -16,7 +16,9 @@ inline bool cmdeq(
     );
 }
 
-bool exec_cmd(const char* cmd, const List<Range>& argl) {
+bool exec_cmd(
+    const char* cmd, const List<Range>& argl
+) {
     using namespace colors;
     
     u32 argc = argl.len();
