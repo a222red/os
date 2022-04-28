@@ -135,6 +135,15 @@ class List {
             }
             --this->length;
         }
+        /// Removes the `i`th element of the list
+        void remove(I i) {
+            auto node = this->ith_node(i);
+            
+            node->prev->next = node->next;
+            node->next->prev = node->prev;
+            
+            delete node;
+        }
         /// Gets the `i`th element of the list.
         T& operator[](I i) const {
             return this->ith_node(i)->value;
