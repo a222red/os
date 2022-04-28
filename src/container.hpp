@@ -24,6 +24,25 @@ class List {
         /// This value can be calculated at any time,
         /// but storing it is much more efficient.
         I length;
+        ListNode<T>* ith_front(I i) const {
+            ListNode<T>* ptr;
+
+            for (ptr = this->start; i > 0; --i) ptr = ptr->next;
+
+            return ptr;
+        }
+        ListNode<T>* ith_back(I i) const {
+            ListNode<T>* ptr;
+
+            for (ptr = this->end; i > 0; --i) ptr = ptr->prev;
+
+            return ptr;
+        }
+        inline ListNode<T>* ith_node(I i) const {
+            if (i > this->length / 2)
+                return ith_back(this->length - i - 1);
+            else return ith_front(i);
+        }
     public:
         /// Constructs an empty list.
         List() : start(nullptr), end(nullptr), length(0) {}
@@ -118,19 +137,15 @@ class List {
         }
         /// Gets the `i`th element of the list.
         T& operator[](I i) const {
-            ListNode<T>* ptr;
-
-            for (ptr = this->start; i > 0; --i) ptr = ptr->next;
-
-            return ptr->value;
+            return this->ith_node(i)->value;
+        }
+        /// Gets the `i`th element of the list from the front.
+        T& index_front(I i) const {
+            return this->ith_front(i)->value;
         }
         /// Gets the `i`th element of the list from the back.
         T& index_back(I i) const {
-            ListNode<T>* ptr;
-
-            for (ptr = this->end; i > 0; --i) ptr = ptr->prev;
-
-            return ptr->value;
+            return this->ith_back(i)->value;
         }
         /// Gets the length of the list.
         /// This function doesn't actually
