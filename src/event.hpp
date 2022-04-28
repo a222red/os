@@ -1,6 +1,8 @@
 #ifndef EVENT_HPP
 #define EVENT_HPP
 
+#include "types.hpp"
+
 enum EventType: u8 {
     KEY_DOWN,
     KEY_UP

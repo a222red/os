@@ -1,6 +1,8 @@
 #ifndef STR_HPP
 #define STR_HPP
 
+#include "types.hpp"
+
 extern "C" void itoa(char* buf, i32 i);
 
 u32 strlen(const char* str) {

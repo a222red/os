@@ -1,6 +1,8 @@
 #ifndef PORT_HPP
 #define PORT_HPP
 
+#include "types.hpp"
+
 static inline void outb(u16 port, u8 data) {
     __asm__("out %%al, %%dx" : : "a" (data), "d" (port));
 }
