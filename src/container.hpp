@@ -52,6 +52,14 @@ class List {
         List(T* arr, I len) {
             for (I i = 0; i < len; ++i) this->push_back(arr[i]);
         }
+        ~List() {
+            for (
+                auto ptr = this->start;
+                ptr->next != nullptr;
+                ptr = ptr->next
+            )
+                delete ptr;
+        }
         /// Creates a copy of this list.
         /// This function usually shouldn't be called,
         /// but instead invoked through the
