@@ -19,6 +19,7 @@ typedef long double f128;
 typedef double f64;
 /// 32-bit floating point
 typedef float f32;
-typedef u32 size_t;
+/// 32-bit unsigned int, only used for std compliance
+typedef unsigned long size_t;
 
 #endif
