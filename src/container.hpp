@@ -45,7 +45,7 @@ class List {
         }
     public:
         /// Constructs an empty list.
-        List() : start(nullptr), end(nullptr), length(0) {}
+        inline List() : start(nullptr), end(nullptr), length(0) {}
         /// Copies a list, reallocating each element.
         List(const List<T, I>& list) :
             start(nullptr),
@@ -58,7 +58,7 @@ class List {
             );
         }
         /// Constructs a list from an array.
-        List(T* arr, I len) {
+        inline List(T* arr, I len) {
             for (I i = 0; i < len; ++i) this->push_back(arr[i]);
         }
         ~List() {
