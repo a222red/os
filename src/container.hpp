@@ -17,11 +17,37 @@ class Box {
     public:
         inline Box(T t) : ptr(new T { t }) {}
         inline Box(const Box<T>& box) : ptr(new T { *box }) {}
-        inline ~Box() { delete ptr; }
+        inline ~Box() { delete this->ptr; }
         inline T& operator *() { return *(this->ptr); }
         inline const T& operator *() const { return *(this->ptr); }
         inline T* operator ->() { return this->ptr; }
         inline const T* operator ->() const { return this->ptr; }
+};
+
+template<typename T>
+class Lazy {
+    protected:
+        mutable T t;
+        T (*f)();
+        mutable bool done;
+    public:
+        inline Lazy(T (*fn)()) : f(fn), done(false) {}
+        inline T& operator*() {
+            if (!done) {
+                this->done = true;
+                this->t = this->fn();
+            }
+
+            return this->t;
+        }
+        inline const T& operator*() const {
+            if (!done) {
+                this->done = true;
+                this->t = this->f();
+            }
+
+            return this->t;
+        }
 };
 
 /// A doubly-linked list.
