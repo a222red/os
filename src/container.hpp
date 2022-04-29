@@ -186,17 +186,23 @@ class List {
             delete node;
         }
         /// Gets the `i`th element of the list.
-        T& operator[](I i) const {
+        const T& operator[](I i) const {
             return this->ith_node(i)->value;
         }
+        /// Gets the `i`th element of the list.
+        T& operator[](I i) { return this->ith_node(i)->value; }
         /// Gets the `i`th element of the list from the front.
-        T& index_front(I i) const {
+        const T& index_front(I i) const {
             return this->ith_front(i)->value;
         }
+        /// Gets the `i`th element of the list from the front.
+        T& index_front(I i) { return this->ith_front(i)->value; }
         /// Gets the `i`th element of the list from the back.
-        T& index_back(I i) const {
+        const T& index_back(I i) const {
             return this->ith_back(i)->value;
         }
+        /// Gets the `i`th element of the list from the back.
+        T& index_back(I i) { return this->ith_back(i)->value; }
         /// Gets the length of the list.
         /// This function doesn't actually
         /// calculate the length, so it's
