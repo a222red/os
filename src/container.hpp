@@ -82,6 +82,15 @@ class List {
             for (ptr = this->start; ptr != nullptr; ptr = ptr->next)
                 fn(ptr->value, data);
         }
+        List<T, I> map(void (*fn)(T, void*), void* data = nullptr) {
+            List<T, I> list;
+            ListNode<T>* ptr;
+
+            for (ptr = this->start; ptr != nullptr; ptr = ptr->next)
+                list.push_back(fn(ptr->value, data));
+
+            return list;
+        }
         /// Adds an element to the back of the list.
         void push_back(const T& t) {
             if (this->start == nullptr) {
