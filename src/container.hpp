@@ -47,7 +47,16 @@ class List {
         /// Constructs an empty list.
         List() : start(nullptr), end(nullptr), length(0) {}
         /// Copies a list, reallocating each element.
-        List(const List<T, I>& list) { *this = list.clone(); }
+        List(const List<T, I>& list) :
+            start(nullptr),
+            end(nullptr),
+            length(0)
+        {
+            list.for_each(
+                [](T t, void* s) { ((List*)s)->push_back(t); },
+                this
+            );
+        }
         /// Constructs a list from an array.
         List(T* arr, I len) {
             for (I i = 0; i < len; ++i) this->push_back(arr[i]);
@@ -60,18 +69,15 @@ class List {
             )
                 delete ptr;
         }
-        /// Creates a copy of this list.
-        /// This function usually shouldn't be called,
-        /// but instead invoked through the
-        /// copy constructor.
-        List<T, I> clone() const {
-            List<T, I> list;
+        /// Iterates through each list element,
+        /// calling `fn(elem, data)` for each element.
+        /// This method is more efficient than iterating with
+        /// a `for` loop.
+        void for_each(void (*fn)(T, void*), void* data) const {
             ListNode<T>* ptr;
 
             for (ptr = this->start; ptr != nullptr; ptr = ptr->next)
-                list.push_back(ptr->value);
-            
-            return list;
+                fn(ptr->value, data);
         }
         /// Adds an element to the back of the list.
         void push_back(const T& t) {
