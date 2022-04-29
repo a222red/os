@@ -10,6 +10,20 @@ struct ListNode {
     ListNode<T>* prev;
 };
 
+template<typename T>
+class Box {
+    protected:
+        T* ptr;
+    public:
+        inline Box(T t) : ptr(new T { t }) {}
+        inline Box(const Box<T>& box) : ptr(new T { *box }) {}
+        inline ~Box() { delete ptr; }
+        inline T& operator *() { return *(this->ptr); }
+        inline const T& operator *() const { return *(this->ptr); }
+        inline T* operator ->() { return this->ptr; }
+        inline const T* operator ->() const { return this->ptr; }
+};
+
 /// A doubly-linked list.
 template<typename T, typename I = u32>
 class List {
