@@ -73,7 +73,10 @@ class List {
         /// calling `fn(elem, data)` for each element.
         /// This method is more efficient than iterating with
         /// a `for` loop.
-        void for_each(void (*fn)(T, void*), void* data) const {
+        void for_each(
+            void (*fn)(T, void*),
+            void* data = nullptr
+        ) const {
             ListNode<T>* ptr;
 
             for (ptr = this->start; ptr != nullptr; ptr = ptr->next)
