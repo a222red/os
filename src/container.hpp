@@ -82,7 +82,8 @@ class List {
             for (ptr = this->start; ptr != nullptr; ptr = ptr->next)
                 fn(ptr->value, data);
         }
-        List<T, I> map(void (*fn)(T, void*), void* data = nullptr) {
+        /// Creates a new list of `fn` applied to each element.
+        List<T, I> map(T (*fn)(T, void*), void* data = nullptr) {
             List<T, I> list;
             ListNode<T>* ptr;
 
