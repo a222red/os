@@ -42,6 +42,7 @@ class Lazy {
             return this->t;
         }
         inline T (*get_fn())() const { return this->f; }
+        inline bool loaded() const { return this->done; }
 };
 
 template<typename T>
