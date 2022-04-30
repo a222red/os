@@ -25,6 +25,11 @@ class Lazy {
         mutable bool done;
     public:
         inline Lazy(T (*fn)()) : f(fn), done(false) {}
+        inline Lazy(const Lazy<T>& lazy) {
+            this->f = lazy.get_fn();
+            this->done = lazy.loaded();
+            if (lazy.loaded()) this->t = *lazy;
+        }
         inline T& operator*() {
             if (!done) {
                 this->done = true;
