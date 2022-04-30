@@ -4,13 +4,6 @@
 #include "mem.hpp"
 
 template<typename T>
-struct ListNode {
-    T value;
-    ListNode<T>* next;
-    ListNode<T>* prev;
-};
-
-template<typename T>
 class Box {
     protected:
         T* ptr;
@@ -48,6 +41,13 @@ class Lazy {
 
             return this->t;
         }
+};
+
+template<typename T>
+struct ListNode {
+    T value;
+    ListNode<T>* next;
+    ListNode<T>* prev;
 };
 
 /// A doubly-linked list.
