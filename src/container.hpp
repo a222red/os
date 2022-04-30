@@ -30,7 +30,7 @@ class Lazy {
             this->done = lazy.loaded();
             if (lazy.loaded()) this->t = *lazy;
         }
-        inline T& operator*() {
+        inline T& operator *() {
             if (!done) {
                 this->done = true;
                 this->t = this->fn();
@@ -38,7 +38,7 @@ class Lazy {
 
             return this->t;
         }
-        inline const T& operator*() const {
+        inline const T& operator *() const {
             if (!done) {
                 this->done = true;
                 this->t = this->f();
@@ -223,7 +223,7 @@ class List {
             return this->ith_node(i)->value;
         }
         /// Gets the `i`th element of the list.
-        T& operator[](I i) { return this->ith_node(i)->value; }
+        T& operator [](I i) { return this->ith_node(i)->value; }
         /// Gets the `i`th element of the list from the front.
         const T& index_front(I i) const {
             return this->ith_front(i)->value;
