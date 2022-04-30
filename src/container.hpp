@@ -41,6 +41,7 @@ class Lazy {
 
             return this->t;
         }
+        inline T (*get_fn())() const { return this->f; }
 };
 
 template<typename T>
