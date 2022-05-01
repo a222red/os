@@ -3,6 +3,7 @@
 
 #include "mem.hpp"
 
+/// Unique smart pointer type.
 template<typename T>
 class Box {
     protected:
@@ -17,6 +18,11 @@ class Box {
         inline const T* operator ->() const { return this->ptr; }
 };
 
+/// Lazy-loading container type.
+/// This type is best used to store expensive-to-construct objects
+/// that may or may not be needed.
+/// The contained value is not heap-allocated,
+/// so objects of this type should be passed by reference.
 template<typename T>
 class Lazy {
     protected:
@@ -59,6 +65,9 @@ class Lazy {
         inline bool loaded() const { return this->done; }
 };
 
+/// A single linked list node.
+/// This type is part of the implementation of `List`,
+/// and shouldn't be used on its own.
 template<typename T>
 struct ListNode {
     T value;
