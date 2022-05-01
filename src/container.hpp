@@ -30,6 +30,15 @@ class Lazy {
             this->done = lazy.loaded();
             if (lazy.loaded()) this->t = *lazy;
         }
+        inline void operator =(T (*fn)()) {
+            this->done = false;
+            thsi->f = fn;
+        }
+        inline void operator =(const Lazy<T>& lazy) {
+            this->f = lazy.get_fn();
+            this->done = lazy.loaded();
+            if (lazy.loaded()) this->t = *lazy;
+        }
         inline T& operator *() {
             if (!done) {
                 this->done = true;
