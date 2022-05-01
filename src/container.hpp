@@ -4,6 +4,8 @@
 #include "mem.hpp"
 
 /// Unique smart pointer type.
+/// Allocation and deallocation are handled automatically,
+/// helping prevent memory leaks.
 template<typename T>
 class Box {
     protected:
@@ -23,6 +25,8 @@ class Box {
 /// that may or may not be needed.
 /// The contained value is not heap-allocated,
 /// so objects of this type should be passed by reference.
+/// For a heap-allocated version, `Lazy<Box<T>>` is recommended over
+/// `Box<Lazy<T>>`, because it lazy-loads the heap allocation.
 template<typename T>
 class Lazy {
     protected:
