@@ -132,6 +132,19 @@ class List {
         inline List(T* arr, I len) {
             for (I i = 0; i < len; ++i) this->push_back(arr[i]);
         }
+        /// Copies another list, destroying this one.
+        inline void operator =(const List& list) {
+            this->~List();
+            
+            this->start = nullptr;
+            this->end = nullptr;
+            this->length = 0;
+
+            list.for_each(
+                [](T t, void* s) { ((List*)s)->push_back(t); },
+                this
+            );
+        }
         ~List() {
             for (
                 auto ptr = this->start;
