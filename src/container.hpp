@@ -81,9 +81,10 @@ struct __ListNode {
     __ListNode<T>* prev;
 };
 
+template<typename I = u32>
 struct Range {
-    u32 start;
-    u32 end;
+    I start;
+    I end;
 };
 
 /// A doubly-linked list.
@@ -270,7 +271,7 @@ class List {
         List<T> operator [](Range r) const {
             List list;
             __ListNode<T>* ptr = this->ith_node(r.start);
-            u32 i = r.start;
+            I i = r.start;
 
             while (i < r.end) {
                 list.push_back(ptr->value);
