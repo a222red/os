@@ -81,6 +81,11 @@ struct __ListNode {
     __ListNode<T>* prev;
 };
 
+struct Range {
+    u32 start;
+    u32 end;
+};
+
 /// A doubly-linked list.
 template<typename T, typename I = u32>
 class List {
@@ -261,6 +266,19 @@ class List {
         }
         /// Gets the `i`th element of the list.
         T& operator [](I i) { return this->ith_node(i)->value; }
+        List<T> operator [](Range r) const {
+            List list;
+            __ListNode<T>* ptr = this->ith_node(r.start);
+            u32 i = r.start;
+
+            while (i < r.end) {
+                list.push_back(ptr->value);
+                ptr = ptr->next;
+                ++i;
+            }
+
+            return list;
+        }
         /// Gets the `i`th element of the list from the front.
         const T& index_front(I i) const {
             return this->ith_front(i)->value;
@@ -278,11 +296,6 @@ class List {
         /// calculate the length, so it's
         /// free to call.
         inline I len() const { return this->length; }
-};
-
-struct Range {
-    u32 start;
-    u32 end;
 };
 
 #endif
