@@ -13,6 +13,7 @@ class Box {
     public:
         inline Box(T t) : ptr(new T { t }) {}
         inline Box(const Box<T>& box) : ptr(new T { *box }) {}
+        inline void operator =(const Box<T>& box) = delete;
         inline ~Box() { delete this->ptr; }
         inline T& operator *() { return *(this->ptr); }
         inline const T& operator *() const { return *(this->ptr); }
