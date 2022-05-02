@@ -34,6 +34,7 @@ class Lazy {
         T (*f)();
         mutable bool done;
     public:
+        typedef T (*FnType)();
         inline Lazy(T (*fn)()) : f(fn), done(false) {}
         inline Lazy(const Lazy<T>& lazy) {
             this->f = lazy.get_fn();
@@ -65,7 +66,7 @@ class Lazy {
 
             return this->t;
         }
-        inline T (*get_fn())() const { return this->f; }
+        inline FnType get_fn() const { return this->f; }
         inline bool loaded() const { return this->done; }
 };
 
