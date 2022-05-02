@@ -5,9 +5,9 @@
 
 /// Processes a string, returning a list
 /// of the start and end of each token.
-List<Range> tokenize(const char* s) {
-    Range r { 0, 0 };
-    List<Range> l;
+List<Range<>> tokenize(const char* s) {
+    Range<> r { 0, 0 };
+    List<Range<>> l;
     bool in_str = false;
 
     while (1) {

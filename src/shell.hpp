@@ -8,7 +8,7 @@
 #include "str.hpp"
 
 inline bool cmdeq(
-    const char* cmd, Range r, const char* str, u32 len
+    const char* cmd, Range<> r, const char* str, u32 len
 ) {
     return (
         r.end - r.start == len &&
@@ -17,7 +17,7 @@ inline bool cmdeq(
 }
 
 bool exec_cmd(
-    const char* cmd, const List<Range>& argl
+    const char* cmd, const List<Range<>>& argl
 ) {
     using namespace colors;
     
