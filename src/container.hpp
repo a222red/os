@@ -42,7 +42,7 @@ class Lazy {
         }
         inline void operator =(T (*fn)()) {
             this->done = false;
-            thsi->f = fn;
+            this->f = fn;
         }
         inline void operator =(const Lazy<T>& lazy) {
             this->f = lazy.get_fn();
