@@ -266,6 +266,7 @@ class List {
         }
         /// Gets the `i`th element of the list.
         T& operator [](I i) { return this->ith_node(i)->value; }
+        /// Construct a list from a slice of this one.
         List<T> operator [](Range r) const {
             List list;
             __ListNode<T>* ptr = this->ith_node(r.start);
