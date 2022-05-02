@@ -75,10 +75,10 @@ class Lazy {
 /// This type is part of the implementation of `List`,
 /// and shouldn't be used on its own.
 template<typename T>
-struct ListNode {
+struct __ListNode {
     T value;
-    ListNode<T>* next;
-    ListNode<T>* prev;
+    __ListNode<T>* next;
+    __ListNode<T>* prev;
 };
 
 /// A doubly-linked list.
@@ -87,29 +87,29 @@ class List {
     protected:
         /// A pointer to the first element in the list.
         /// If this is null, the list is empty.
-        ListNode<T>* start;
+        __ListNode<T>* start;
         /// A pointer to the last element in the list.
         /// If this is null, the list is empty.
-        ListNode<T>* end;
+        __ListNode<T>* end;
         /// The amount of elements in the list.
         /// This value can be calculated at any time,
         /// but storing it is much more efficient.
         I length;
-        ListNode<T>* ith_front(I i) const {
-            ListNode<T>* ptr;
+        __ListNode<T>* ith_front(I i) const {
+            __ListNode<T>* ptr;
 
             for (ptr = this->start; i > 0; --i) ptr = ptr->next;
 
             return ptr;
         }
-        ListNode<T>* ith_back(I i) const {
-            ListNode<T>* ptr;
+        __ListNode<T>* ith_back(I i) const {
+            __ListNode<T>* ptr;
 
             for (ptr = this->end; i > 0; --i) ptr = ptr->prev;
 
             return ptr;
         }
-        inline ListNode<T>* ith_node(I i) const {
+        inline __ListNode<T>* ith_node(I i) const {
             if (i > this->length / 2)
                 return ith_back(this->length - i - 1);
             else return ith_front(i);
@@ -161,7 +161,7 @@ class List {
             void (*fn)(T, void*),
             void* data = nullptr
         ) const {
-            ListNode<T>* ptr;
+            __ListNode<T>* ptr;
 
             for (ptr = this->start; ptr != nullptr; ptr = ptr->next)
                 fn(ptr->value, data);
@@ -169,7 +169,7 @@ class List {
         /// Creates a new list of `fn` applied to each element.
         List<T, I> map(T (*fn)(T, void*), void* data = nullptr) {
             List<T, I> list;
-            ListNode<T>* ptr;
+            __ListNode<T>* ptr;
 
             for (ptr = this->start; ptr != nullptr; ptr = ptr->next)
                 list.push_back(fn(ptr->value, data));
@@ -179,7 +179,7 @@ class List {
         /// Adds an element to the back of the list.
         void push_back(const T& t) {
             if (this->start == nullptr) {
-                this->start = new ListNode<T> {
+                this->start = new __ListNode<T> {
                     .value = t,
                     .next = nullptr,
                     .prev = nullptr
@@ -187,7 +187,7 @@ class List {
                 this->end = this->start;
             }
             else {
-                this->end->next = new ListNode<T> {
+                this->end->next = new __ListNode<T> {
                     .value = t,
                     .next = nullptr,
                     .prev = this->end
@@ -199,7 +199,7 @@ class List {
         /// Adds an element to the front of the list.
         void push_front(const T& t) {
             if (this->start == nullptr) {
-                this->start = new ListNode<T> {
+                this->start = new __ListNode<T> {
                     .value = t,
                     .next = nullptr,
                     .prev = nullptr
@@ -207,7 +207,7 @@ class List {
                 this->end = this->start;
             }
             else {
-                this->start->prev = new ListNode<T> {
+                this->start->prev = new __ListNode<T> {
                     .value = t,
                     .next = this->start,
                     .prev = nullptr
