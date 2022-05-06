@@ -193,12 +193,12 @@ class List {
 
             return list;
         }
-        T foldl(T (*fn)(T, void*), T t) const {
+        T foldl(T (*fn)(T, T), T t) const {
             T res = t;
             __ListNode<T> ptr;
 
             for (ptr = this->start; ptr != nullptr; ptr = ptr->next)
-                t = fn(t);
+                t = fn(t, ptr->value);
 
             return t;
         }
