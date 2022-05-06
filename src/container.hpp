@@ -193,6 +193,15 @@ class List {
 
             return list;
         }
+        T foldl(T (*fn)(T, void*), T t) const {
+            T res = t;
+            __ListNode<T> ptr;
+
+            for (ptr = this->start; ptr != nullptr; ptr = ptr->next)
+                t = fn(t);
+
+            return t;
+        }
         /// Adds an element to the back of the list.
         void push_back(const T& t) {
             if (this->start == nullptr) {
