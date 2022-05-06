@@ -172,7 +172,8 @@ class List {
             for (ptr = this->start; ptr != nullptr; ptr = ptr->next)
                 fn(ptr->value, data);
         }
-        /// Creates a new list of `fn` applied to each element.
+        /// Creates a new list of `fn(_, data)`
+        /// applied to each element.
         List<T, I> map(T (*fn)(T, void*), void* data) const {
             List<T, I> list;
             __ListNode<T>* ptr;
@@ -182,6 +183,7 @@ class List {
 
             return list;
         }
+        /// Creates a new list of `fn` applied to each element.
         List<T, I> map(T (*fn)(T, void*)) const {
             List<T, I> list;
             __ListNode<T>* ptr;
