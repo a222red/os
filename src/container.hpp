@@ -173,10 +173,7 @@ class List {
                 fn(ptr->value, data);
         }
         /// Creates a new list of `fn` applied to each element.
-        List<T, I> map(
-            T (*fn)(T, void*),
-            void* data
-        ) const {
+        List<T, I> map(T (*fn)(T, void*), void* data) const {
             List<T, I> list;
             __ListNode<T>* ptr;
 
