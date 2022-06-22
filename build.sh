@@ -1,9 +1,7 @@
 nasm src/kernel-entry.asm -f elf -o build/kernel-entry.o || exit $?
 nasm src/vga.asm -f elf -o build/vga.o || exit $?
 nasm src/mem.asm -f elf -o build/mem.o || exit $?
-nasm src/str.asm -f elf -o build/str.o || exit $?
 nasm src/interrupts.asm -f elf -o build/interrupts.o || exit $?
-nasm src/disk.asm -f elf -o build/disk.o || exit $?
 
 clang++ -m32 -std=c++20 -Wall -Werror=return-type -O2 \
     -nostdlib -fno-builtin -nodefaultlibs \
@@ -13,8 +11,8 @@ clang++ -m32 -std=c++20 -Wall -Werror=return-type -O2 \
     -c src/kernel.cpp -o build/kernel.o || exit $?
 
 ld -m elf_i386 -o bin/kernel.bin -Ttext 0xfffc \
-    build/kernel-entry.o build/kernel.o build/disk.o \
-    build/vga.o build/mem.o build/str.o build/interrupts.o \
+    build/kernel-entry.o build/kernel.o \
+    build/vga.o build/mem.o build/interrupts.o \
     --oformat binary || exit $?
 
 kernel_size=`stat bin/kernel.bin -c "%s"`
